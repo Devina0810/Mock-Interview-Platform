@@ -7,6 +7,7 @@ import "./globals.css";
 const monaSans = Mona_Sans({
     variable: "--font-mona-sans",
     subsets: ["latin"],
+    display: "swap",
 });
 
 export const metadata: Metadata = {
