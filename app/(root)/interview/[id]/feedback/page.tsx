@@ -12,15 +12,15 @@ import { getCurrentUser } from "@/lib/actions/auth.action";
 
 const Feedback = async ({ params }: RouteParams) => {
   const { id } = await params;
-  const user = await getCurrentUser();
+    const user = await getCurrentUser();
 
-  const interview = await getInterviewById(id);
-  if (!interview) redirect("/");
+    const interview = await getInterviewById(id);
+    if (!interview || !user?.id) redirect("/");
 
-  const feedback = await getFeedbackByInterviewId({
-    interviewId: id,
-    userId: user?.id!,
-  });
+    const feedback = await getFeedbackByInterviewId({
+        interviewId: id,
+        userId: user.id,
+    });
 
   return (
     <section className="section-feedback">

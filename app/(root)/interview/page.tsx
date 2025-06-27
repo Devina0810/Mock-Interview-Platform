@@ -2,20 +2,21 @@ import Agent from "@/components/Agent";
 import { getCurrentUser } from "@/lib/actions/auth.action";
 
 const Page = async () => {
-  const user = await getCurrentUser();
+    const user = await getCurrentUser();
 
-  return (
-    <>
-      <h3>Interview generation</h3>
+    if (!user?.id || !user.name) return <p>Unauthorized</p>;
 
-      <Agent
-        userName={user?.name!}
-        userId={user?.id}
-        profileImage={user?.profileURL}
-        type="generate"
-      />
-    </>
-  );
+    return (
+        <>
+            <h3>Interview generation</h3>
+
+            <Agent
+                userName={user.name}
+                userId={user.id}
+                type="generate"
+            />
+        </>
+    );
 };
 
 export default Page;
